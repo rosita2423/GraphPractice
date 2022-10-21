@@ -9,26 +9,12 @@ namespace GraphPractice
     internal class Node
     {
         //Attributes
-        private Nullable<int> data = null;
-        public List<Node> aimingNodes = new List<Node>();
-
-        //Constructor to insert as obligatory the data of the node.
-        public Node(int dataParameter)
+        public int data;
+        public List<Edge> edgesList = new List<Edge>();
+        public Node(Graph graph)
         {
-            data = dataParameter;
-        }
-
-        //Methods
-        public void Delete()
-        {
-            for(int i = 0; i < aimingNodes.Count; i++)
-            {
-                if(aimingNodes[i] == this)
-                {
-                    aimingNodes.RemoveAt(i);
-                }
-            }
-            this.data = null;
+            data = graph.assignNodeData;
+            graph.assignNodeData++;
         }
     }
 }
