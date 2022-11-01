@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GraphPractice
 {
@@ -13,7 +14,11 @@ namespace GraphPractice
 		public List<Node> nodesList = new List<Node>();
 		private List<Edge> edgesList = new List<Edge>();
 
+		private int high = 1;
+
 		public int assignNodeData=0;
+
+		public int shortest = 0;
 
 		//Methods
 		public void insertNode(Node node)
@@ -31,11 +36,33 @@ namespace GraphPractice
 		}
 		public void deleteNode(Node node)
 		{
+			for (int i = 0; i < nodesList.Count; i++)
+			{
+				for (int k = 0; k < nodesList[i].children.Count; k++)
+				{
+					if (nodesList[i].children[k] == node)
+					{
+						nodesList[i].children.RemoveAt(k);
+					}
+				}
+			}
 			//Removing the node into the list of nodes.
 			for (int i = 0; i < nodesList.Count; i++)
             {
+				
 				if (nodesList[i] == node)
                 {
+					for (int k = 0; k > node.children.Count; k++)
+					{
+						nodesList[i].children.RemoveAt(k);
+                    }
+					for (int k = 0; k<edgesList.Count ;k++)
+					{
+						if (edgesList[k].initalNode == node || edgesList[k].finalNode == node )
+						{
+							edgesList.RemoveAt(k);
+						}
+					}
 					nodesList.RemoveAt(i);
 					return;
                 }
@@ -49,8 +76,21 @@ namespace GraphPractice
 		}
 		public void deleteEdge(Edge edge)
         {
-			//Remove into the list of edges the parameter edge inserted.
-			for (int i = 0; i<edgesList.Count;i++)
+			for (int i = 0; i < nodesList.Count; i++)
+			{
+				if (edge.initalNode == nodesList[i])
+				{
+					for (int k = 0; k<nodesList[i].children.Count;k++)
+					{
+						if (edge.finalNode == nodesList[i].children[k])
+						{
+							nodesList[i].children.RemoveAt(k);
+						}
+					}
+				}
+			}
+                //Remove into the list of edges the parameter edge inserted.
+                for (int i = 0; i<edgesList.Count;i++)
             {
                 if (edgesList[i]==edge)
                 {
@@ -153,6 +193,68 @@ namespace GraphPractice
 				Console.WriteLine();
 			}
 			Console.WriteLine();
+		}
+		public void transverseGraphBFS(Node node)
+		{
+			Console.WriteLine(node.data);
+
+			foreach (Node nodes in node.children)
+			{
+				high = high + 1;
+				transverseGraphBFS(nodes);
+				high = high - 1;
+			}
+		}
+		public void transverseGraphDFS(Node node)
+		{
+			foreach (Node nodes in node.children)
+			{
+				high = high + 1;
+				transverseGraphDFS(nodes);
+				high = high - 1;
+			}
+            Console.WriteLine(node.data);
+        }
+		public void shortAlgorithm(Node initialNode, Node goal)
+		{
+			int[] shortestList = new int[7];
+			int sum = 0;
+			int path1 = 0;
+			int path2 = 0;
+
+			Node actualNode = new Node(this);
+			while (goal != actualNode)
+			{
+
+			}
+			foreach (Edge edges in edgesList)
+			{
+				if (edges.initalNode == initialNode)
+				{
+					foreach(Node nodes in initialNode.children)
+					{
+
+					}
+                    if (path1 < edgesList[1].weight)
+                    {
+                        path1 = edgesList[1].weight;
+                    }
+                }
+				foreach (Node nodes in nodesList)
+				{
+					if (edges.initalNode == nodes)
+					{
+                        if (path1 < edgesList[1].weight)
+                        {
+                            path1 = edgesList[1].weight;
+                        }
+                    }
+                }
+			}
+		}
+		public void shortAlgorithm(Node goal)
+		{
+
 		}
 	}
 }

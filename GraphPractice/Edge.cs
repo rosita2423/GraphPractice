@@ -23,6 +23,8 @@ namespace GraphPractice
             this.initalNode = initialNode;
             this.finalNode = finalNode;
             this.weight = weight;
+
+            initalNode.children.Add(finalNode);
         }
     }
 }
