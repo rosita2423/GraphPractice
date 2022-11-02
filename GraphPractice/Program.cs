@@ -23,19 +23,28 @@ internal class Program
         Node n9 = new Node(graph);
         Node n10 = new Node(graph);
         Node n11 = new Node(graph);
+        Node n12 = new Node(graph);
 
         //Creating Edges.
-        Edge e1 = new Edge(n0, n1, 5);
+        Edge e1 = new Edge(n0, n1, 10);
         Edge e2 = new Edge(n0, n2, 7);
-        Edge e3 = new Edge(n0, n3, 10);
+        Edge e3 = new Edge(n0, n3, 1);
         Edge e4 = new Edge(n2, n4, 2);
         Edge e5 = new Edge(n2, n5, 9);
         Edge e6 = new Edge(n3, n6, 13);
         Edge e7 = new Edge(n3, n7, 8);
-        Edge e8 = new Edge(n3, n8, 9);
-        Edge e9 = new Edge(n8, n9, 10);
+        Edge e8 = new Edge(n3, n8, 1);
+        Edge e9 = new Edge(n8, n9, 2);
         Edge e10 = new Edge(n9, n10, 11);
-        Edge e11 = new Edge(n9,n11,20);
+        Edge e11 = new Edge(n9,n11,3);
+
+        Edge e12 = new Edge(n1,n12,5);
+        Edge e13 = new Edge(n4,n12,22);
+        Edge e14 = new Edge(n5,n12,23);
+        Edge e15 = new Edge(n6,n12,23);
+        Edge e16 = new Edge(n7, n12, 19);
+        Edge e17 = new Edge(n10, n12, 3);
+        Edge e18 = new Edge(n11, n12, 12);
 
         //Adding nodes to the graph.
         graph.insertNode(n0);
@@ -48,6 +57,9 @@ internal class Program
         graph.insertNode(n7);
         graph.insertNode(n8);
         graph.insertNode(n9);
+        graph.insertNode(n10);
+        graph.insertNode(n11);
+        graph.insertNode(n12);
 
         //Adding edges to the graph.
         graph.insertEdge(e1);
@@ -59,22 +71,38 @@ internal class Program
         graph.insertEdge(e7);
         graph.insertEdge(e8);
         graph.insertEdge(e9);
-
+        graph.insertEdge(e10);
+        graph.insertEdge(e11);
+        graph.insertEdge(e12);
+        graph.insertEdge(e13);
+        graph.insertEdge(e14);
+        graph.insertEdge(e15);
+        graph.insertEdge(e16);
+        graph.insertEdge(e17);
+        graph.insertEdge(e18);
         //Deleting nodes.
         //graph.deleteNode(n8);
         //graph.deleteNode(n4);
         //graph.deleteNode(n1);
-        graph.deleteNode(n3);
+        //graph.deleteNode(n3);
 
         //Deleting edges.
-        graph.deleteEdge(e1);
+        //graph.deleteEdge(e1);
         //graph.deleteEdge(e8);
 
         //Print graph.
         graph.printGraphConnections();
         graph.printGraphWeights();
+
+        //Transverse
+        
         graph.transverseGraphBFS(n0);
-        Console.WriteLine();
-        graph.transverseGraphDFS(n0);    
+        Console.WriteLine("\n" + "DFS method");
+        graph.transverseGraphDFS(n0);
+
+        //Short algorithm
+        Console.WriteLine("\n" + "Short algorithm");
+        graph.shortAlgorithm(n0, n12);
+        graph.shortAlgorithmDefinitive(n0, n12);
     }
 }

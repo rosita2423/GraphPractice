@@ -9,7 +9,7 @@ namespace GraphPractice
     internal class Edge
     {
         //Attributes
-        public Node initalNode;
+        public Node initialNode;
         public Node finalNode;
         public int weight;
         public Edge(Node initialNode, Node finalNode, int weight)
@@ -20,11 +20,16 @@ namespace GraphPractice
                 return;
             }
             //Assigning edge values.
-            this.initalNode = initialNode;
+            this.initialNode = initialNode;
             this.finalNode = finalNode;
             this.weight = weight;
 
-            initalNode.children.Add(finalNode);
+            this.initialNode.children.Add(finalNode);
+            this.finalNode.father.Add(initialNode);
+        }
+        public Edge()
+        {
+
         }
     }
 }
