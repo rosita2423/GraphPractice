@@ -264,7 +264,7 @@ namespace GraphPractice
                 }
             }
 
-            Console.Write("\n" + "Transverse BFS method: (");
+            Console.Write("\n" + "Transverse DFS method: (");
             for (int i = 0; i < values.Length; i++)
             {
                 if (values.Length - 1 == i)
@@ -311,17 +311,15 @@ namespace GraphPractice
 				if (edges.initialNode == initialNode)
 				{
 
-                        if (maxNumb > edges.weight)
-                        {
-                            maxNumb = edges.weight;
-							edgeIn = edges;
-							//Console.WriteLine(edges.weight);
-							//Edge bestPath = new Edge(initialNode, nodesChildren, edges.weight);
-                        }
-                    
+                    if (maxNumb > edges.weight)
+                    {
+                        maxNumb = edges.weight;
+						edgeIn = edges;
+                    }
+
                 }
             }
-			Console.WriteLine(maxNumb);
+
 			nodeShortPath.Add(edgeIn.initialNode);
 			nodeShortPath.Add(edgeIn.finalNode);
 			shortAlgorithm(edgeIn, goal);
@@ -347,16 +345,15 @@ namespace GraphPractice
 			int maxNumb = 30000;
 			if (edgeIn.finalNode == goal)
 			{
-				Console.WriteLine("Process finished");
 				return;
 			}
 			///
-			if (edgeIn.finalNode.children == null)
-			{
-				//Una nueva función debe comparar ahora los nodes iniciales en vez de los finales.
-				shortAlgorithmInitial(edgeIn, goal,maxNumb);
-				return;
-			}
+			//if (edgeIn.finalNode.children == null)
+			//{
+			//	//Una nueva función debe comparar ahora los nodes iniciales en vez de los finales.
+			//	shortAlgorithmInitial(edgeIn, goal,maxNumb);
+			//	return;
+			//}
 			///
             foreach (Edge edges in edgesList)
             {
@@ -373,7 +370,6 @@ namespace GraphPractice
                     
                 }
             }
-            Console.WriteLine(maxNumb);
 
             nodeShortPath.Add(edgeIn.finalNode);
 

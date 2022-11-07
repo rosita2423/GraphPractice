@@ -33,12 +33,12 @@ internal class Program
         Edge e5 = new Edge(n2, n5, 9);
         Edge e6 = new Edge(n3, n6, 13);
         Edge e7 = new Edge(n3, n7, 8);
-        Edge e8 = new Edge(n3, n8, 1);
+        Edge e8 = new Edge(n3, n8, 14);
         Edge e9 = new Edge(n8, n9, 2);
         Edge e10 = new Edge(n9, n10, 11);
         Edge e11 = new Edge(n9,n11,3);
 
-        Edge e12 = new Edge(n1,n12,5);
+        Edge e12 = new Edge(n1,n12,50);
         Edge e13 = new Edge(n4,n12,22);
         Edge e14 = new Edge(n5,n12,23);
         Edge e15 = new Edge(n6,n12,23);
@@ -97,11 +97,9 @@ internal class Program
         //Transverse
         
         graph.transverseGraphBFS(n0);
-        Console.WriteLine("\n" + "DFS method");
         graph.transverseGraphDFS(n0);
 
         //Short algorithm
-        Console.WriteLine("\n" + "Short algorithm");
         graph.shortAlgorithm(n0, n12);
         graph.shortAlgorithmDefinitive(n0, n12);
     }
